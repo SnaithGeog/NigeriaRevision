@@ -1,28 +1,11 @@
 # Nigeria Revision Quest
 
-A static, self-marking GCSE Geography revision website based on the Nigeria Revision Marathon activities.
+Static self-marking revision website.
 
-## What is included
-- All original activity types from the PowerPoint
-- Retrieval races
-- Sorting games
-- Gap-fill codebreaker
-- Data detective activity
-- Exam-answer self-assessment
-- Flashcards, fact match, Nigeria Dash and 8-mark boss battle
-- Local progress saving using the browser's localStorage
+## GitHub Pages
+Upload `index.html`, `styles.css` and `script.js` to a repository. Go to Settings > Pages and publish from the main branch/root.
 
-## Hosting on GitHub Pages
-1. Create a new GitHub repository.
-2. Upload `index.html`, `styles.css` and `script.js` to the root of the repository.
-3. Go to Settings > Pages.
-4. Set Source to Deploy from branch, then choose `main` and `/root`.
-5. Save and use the Pages URL.
+## InfinityFree
+Upload `index.html`, `styles.css` and `script.js` into the `htdocs` folder using File Manager or FTP.
 
-## Hosting on InfinityFree
-1. Open File Manager.
-2. Go to `htdocs`.
-3. Upload `index.html`, `styles.css` and `script.js`.
-4. Visit your InfinityFree domain.
-
-No database or server-side code is needed.
+No build tools, database or server-side code are needed.
