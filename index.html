@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nigeria Revision Marathon</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div>
+        <p class="eyebrow">Edexcel A GCSE Geography</p>
+        <h1>Nigeria Revision Marathon</h1>
+        <p class="subtitle">Interactive self-marking activities for development, global importance, trade, aid, technology, rapid development and strategies.</p>
+      </div>
+      <div class="score-panel" aria-live="polite">
+        <span class="score-label">Progress score</span>
+        <strong id="score-total">0 / 0</strong>
+        <button id="resetBtn" class="ghost-btn" type="button">Reset all</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="sticky-nav" aria-label="Activity navigation">
+    <a href="#menu">Menu</a>
+    <a href="#lesson1">Lesson 1</a>
+    <a href="#lesson2">Lesson 2</a>
+    <a href="#lesson3">Lesson 3</a>
+    <a href="#exam">Exam practice</a>
+  </nav>
+
+  <main>
+    <section id="menu" class="hero-card">
+      <div>
+        <p class="eyebrow">Main menu</p>
+        <h2>Choose an activity</h2>
+        <p>Complete each task, check your answers and use the feedback to improve. Short writing tasks include self-assessment mark schemes because there is not always one exact answer.</p>
+      </div>
+      <div class="menu-grid" id="menuGrid"></div>
+    </section>
+
+    <section id="lesson1" class="lesson-section">
+      <div class="section-title">
+        <p class="eyebrow">Lesson 1</p>
+        <h2>Location, importance, core/periphery and economic structure</h2>
+      </div>
+
+      <article class="activity-card" data-activity="l1-rapid">
+        <div class="activity-heading">
+          <div><span class="badge">L1 Do now</span><h3>Rapid retrieval</h3></div>
+          <span class="points">7 points</span>
+        </div>
+        <div class="quiz-grid" data-quiz="l1-rapid"></div>
+        <div class="actions"><button class="check-btn" data-check="l1-rapid">Check answers</button><button class="show-btn" data-show="l1-rapid">Show answers</button></div>
+        <div class="feedback" id="feedback-l1-rapid"></div>
+      </article>
+
+      <article class="activity-card" data-activity="l1-writing">
+        <div class="activity-heading"><div><span class="badge">L1 Short writing</span><h3>Paper 2 style shorter writing</h3></div></div>
+        <div class="writing-list">
+          <div class="writing-task"><h4>2 marks</h4><p>Describe the location of Nigeria. Use compass directions, the coast and neighbouring countries.</p><textarea placeholder="Write your answer here..."></textarea><button class="reveal-markscheme">Show mark scheme</button><div class="markscheme"><strong>Possible answer:</strong> Nigeria is in West Africa on the Gulf of Guinea / Atlantic coast, close to the equator. It borders Benin to the west and Cameroon to the east, with Niger and Chad to the north.<br><strong>Self-mark:</strong> 1 mark for broad location; 1 mark for accurate extra detail such as coast or neighbouring country.</div></div>
+          <div class="writing-task"><h4>4 marks</h4><p>Explain why Nigeria is important at a global scale. Build two developed reasons with evidence.</p><textarea placeholder="Write your answer here..."></textarea><button class="reveal-markscheme">Show mark scheme</button><div class="markscheme"><strong>Possible answer:</strong> Nigeria is globally important because it produces about 8% of the world’s oil and is a member of OPEC, so it influences energy markets. It is also Africa’s largest economy and has a huge population, making it an important market and regional power.<br><strong>Self-mark:</strong> Award up to 2 marks per developed reason. Credit accurate evidence.</div></div>
+          <div class="writing-task"><h4>3 marks</h4><p>Describe the employment structure of Nigeria. Use the sector percentages in your answer.</p><textarea placeholder="Write your answer here..."></textarea><button class="reveal-markscheme">Show mark scheme</button><div class="markscheme"><strong>Possible answer:</strong> About 35.9% work in the primary sector, around 14.3% in secondary and roughly 49% in tertiary. This shows services are now the biggest employer, while manufacturing remains smaller.<br><strong>Self-mark:</strong> Credit accurate sector percentages and a clear comparative statement.</div></div>
+        </div>
+      </article>
+
+      <article class="activity-card" data-activity="l1-core">
+        <div class="activity-heading"><div><span class="badge">L1 Table</span><h3>Complete the core/periphery table</h3></div><span class="points">6 points</span></div>
+        <div class="table-task" data-table="l1-core"></div>
+        <div class="actions"><button class="check-btn" data-check="l1-core">Check answers</button><button class="show-btn" data-show="l1-core">Show answers</button></div>
+        <div class="feedback" id="feedback-l1-core"></div>
+      </article>
+
+      <article class="activity-card" data-activity="l1-sector">
+        <div class="activity-heading"><div><span class="badge">L1 Sort</span><h3>Sort it: economic sectors</h3></div><span class="points">12 points</span></div>
+        <p class="hint">Choose the correct sector for each mixed option.</p>
+        <div class="sort-task" data-sort="l1-sector"></div>
+        <div class="actions"><button class="check-btn" data-check="l1-sector">Check answers</button><button class="show-btn" data-show="l1-sector">Show answers</button></div>
+        <div class="feedback" id="feedback-l1-sector"></div>
+      </article>
+
+      <article class="activity-card" data-activity="l1-exam">
+        <div class="activity-heading"><div><span class="badge">L1 Exam practice</span><h3>Development within a country</h3></div></div>
+        <div class="writing-list compact">
+          <div class="writing-task"><h4>4 marks</h4><p>Explain why core and periphery regions exist in Nigeria. Build two reasons and develop each.</p><textarea></textarea><button class="reveal-markscheme">Show answer points</button><div class="markscheme">Investment has been concentrated in the South, especially Lagos and the Niger Delta, because oil reserves and ports attract business. Colonial rule also focused development on the coast, leaving many northern areas with weaker infrastructure and fewer jobs.</div></div>
+          <div class="writing-task"><h4>3 marks</h4><p>Explain one way investment by transnational corporations has increased the development of Nigeria. Use a named example if you can.</p><textarea></textarea><button class="reveal-markscheme">Show answer points</button><div class="markscheme">TNC investment can create jobs and bring infrastructure. In Nigeria, oil companies have helped generate exports and government revenue, which can be used on roads and services.</div></div>
+          <div class="writing-task"><h4>8 marks</h4><p>Assess the importance of the different reasons that have led to the growth of a core region and less developed regions on the periphery.</p><textarea></textarea><button class="reveal-markscheme">Show planning support</button><div class="markscheme">Possible reasons: oil in the South; port access; colonial investment; Lagos as a growth pole; Abuja as a second core. Judgement: economic factors matter most, but they were strengthened by history and infrastructure.</div></div>
+        </div>
+      </article>
+    </section>
+
+    <section id="lesson2" class="lesson-section">
+      <div class="section-title"><p class="eyebrow">Lesson 2</p><h2>Trade, aid, inequality, geopolitics and technology</h2></div>
+
+      <article class="activity-card" data-activity="l2-rapid">
+        <div class="activity-heading"><div><span class="badge">L2 Do now</span><h3>Trade, aid and inequality retrieval</h3></div><span class="points">7 points</span></div>
+        <div class="quiz-grid" data-quiz="l2-rapid"></div>
+        <div class="actions"><button class="check-btn" data-check="l2-rapid">Check answers</button><button class="show-btn" data-show="l2-rapid">Show answers</button></div>
+        <div class="feedback" id="feedback-l2-rapid"></div>
+      </article>
+
+      <article class="activity-card" data-activity="l2-trade">
+        <div class="activity-heading"><div><span class="badge">L2 Data skills</span><h3>Trade figures</h3></div><span class="points">3 points</span></div>
+        <div class="data-box"><strong>Trade data:</strong> Total exports $55.6bn; total imports $52.4bn; largest export buyer India $10.8bn; largest import seller China $20.1bn; aid total $2.5bn; top aid donor USA $719m.</div>
+        <div class="quiz-grid" data-quiz="l2-trade"></div>
+        <div class="actions"><button class="check-btn" data-check="l2-trade">Check calculation</button><button class="show-btn" data-show="l2-trade">Show answer</button></div>
+        <div class="feedback" id="feedback-l2-trade"></div>
+        <div class="writing-list compact"><div class="writing-task"><h4>4 marks</h4><p>Explain how trade helps Nigeria to develop.</p><textarea></textarea><button class="reveal-markscheme">Show mark scheme</button><div class="markscheme">Trade brings in foreign currency and export earnings. Oil exports are worth a lot, so the government gains revenue it can spend on development. Trade can also create jobs in transport, ports and processing.</div></div><div class="writing-task"><h4>4 marks</h4><p>Explain why social inequalities exist between urban and rural areas in Nigeria.</p><textarea></textarea><button class="reveal-markscheme">Show mark scheme</button><div class="markscheme">Urban areas such as Lagos have better funded hospitals, schools and infrastructure. Rural areas often have weaker services, so fewer children attend school and poverty is harder to escape.</div></div></div>
+      </article>
+
+      <article class="activity-card" data-activity="l2-geopolitics">
+        <div class="activity-heading"><div><span class="badge">L2 Sort</span><h3>Conflict/dispute or cooperation/alliance?</h3></div><span class="points">8 points</span></div>
+        <div class="sort-task" data-sort="l2-geopolitics"></div>
+        <div class="actions"><button class="check-btn" data-check="l2-geopolitics">Check answers</button><button class="show-btn" data-show="l2-geopolitics">Show answers</button></div>
+        <div class="feedback" id="feedback-l2-geopolitics"></div>
+      </article>
+
+      <article class="activity-card" data-activity="l2-tech">
+        <div class="activity-heading"><div><span class="badge">L2 Gap fill</span><h3>Technology and connectivity</h3></div><span class="points">5 points</span></div>
+        <p class="hint">Use these options: <strong>119%</strong>, <strong>40%</strong>, <strong>Paga</strong>, <strong>#EndSARS</strong>, <strong>Ulesson</strong>.</p>
+        <div class="gapfill" data-gap="l2-tech"></div>
+        <div class="actions"><button class="check-btn" data-check="l2-tech">Check answers</button><button class="show-btn" data-show="l2-tech">Show answers</button></div>
+        <div class="feedback" id="feedback-l2-tech"></div>
+      </article>
+
+      <article class="activity-card" data-activity="l2-writing">
+        <div class="activity-heading"><div><span class="badge">L2 Short writing</span><h3>Paper 2 style questions</h3></div></div>
+        <div class="writing-list compact">
+          <div class="writing-task"><h4>2 marks</h4><p>Explain one way a geopolitical relationship has affected the development of Nigeria.</p><textarea></textarea><button class="reveal-markscheme">Show answer points</button><div class="markscheme">Nigeria’s role in ECOWAS and peacekeeping can improve regional stability, which helps trade and investment.</div></div>
+          <div class="writing-task"><h4>4 marks</h4><p>Explain how technology has helped Nigeria to develop. Use examples.</p><textarea></textarea><button class="reveal-markscheme">Show answer points</button><div class="markscheme">Technology helps development because mobile banking platforms such as Paga make business transactions easier and faster. E-learning and telemedicine also connect people in remote areas to services they might otherwise miss.</div></div>
+          <div class="writing-task"><h4>3 marks</h4><p>Explain one way a lack of food security can limit a country’s rate of development. Apply the idea to Nigeria.</p><textarea></textarea><button class="reveal-markscheme">Show answer points</button><div class="markscheme">A lack of food security can cause malnutrition and ill health, so people are less productive at work or in school. This slows economic development.</div></div>
+        </div>
+      </article>
+    </section>
+
+    <section id="lesson3" class="lesson-section">
+      <div class="section-title"><p class="eyebrow">Lesson 3</p><h2>Rapid development, Shell and development strategies</h2></div>
+
+      <article class="activity-card" data-activity="l3-rapid">
+        <div class="activity-heading"><div><span class="badge">L3 Do now</span><h3>Rapid development and Shell</h3></div><span class="points">6 points</span></div>
+        <div class="quiz-grid" data-quiz="l3-rapid"></div>
+        <div class="actions"><button class="check-btn" data-check="l3-rapid">Check answers</button><button class="show-btn" data-show="l3-rapid">Show answers</button></div>
+        <div class="feedback" id="feedback-l3-rapid"></div>
+      </article>
+
+      <article class="activity-card" data-activity="l3-impacts">
+        <div class="activity-heading"><div><span class="badge">L3 Sort</span><h3>Positive or negative impact?</h3></div><span class="points">8 points</span></div>
+        <div class="sort-task" data-sort="l3-impacts"></div>
+        <div class="actions"><button class="check-btn" data-check="l3-impacts">Check answers</button><button class="show-btn" data-show="l3-impacts">Show answers</button></div>
+        <div class="feedback" id="feedback-l3-impacts"></div>
+        <div class="writing-list compact"><div class="writing-task"><h4>3 marks</h4><p>Describe the negative environmental impacts of rapid development in Nigeria.</p><textarea></textarea><button class="reveal-markscheme">Show mark scheme</button><div class="markscheme">Oil spills damage rivers and farmland, forest loss reduces biodiversity, and Lagos produces huge amounts of waste that can pollute land and water.</div></div><div class="writing-task"><h4>4 marks</h4><p>Explain two ways Shell can raise the level of development in a country.</p><textarea></textarea><button class="reveal-markscheme">Show mark scheme</button><div class="markscheme">TNCs can create jobs and tax revenue. They can also improve infrastructure and bring technology or skills, although profits may leave the country.</div></div></div>
+      </article>
+
+      <article class="activity-card" data-activity="l3-strategies">
+        <div class="activity-heading"><div><span class="badge">L3 Table</span><h3>Top-down vs bottom-up</h3></div><span class="points">12 points</span></div>
+        <p class="hint">Fill in the type, one benefit and one limitation for each project.</p>
+        <div class="strategy-task" data-strategy="l3-strategies"></div>
+        <div class="actions"><button class="check-btn" data-check="l3-strategies">Check answers</button><button class="show-btn" data-show="l3-strategies">Show answers</button></div>
+        <div class="feedback" id="feedback-l3-strategies"></div>
+      </article>
+    </section>
+
+    <section id="exam" class="lesson-section">
+      <div class="section-title"><p class="eyebrow">Final practice</p><h2>Exam practice and exit ticket</h2></div>
+      <article class="activity-card" data-activity="final-exam">
+        <div class="activity-heading"><div><span class="badge">Final exam practice</span><h3>Plan and write</h3></div></div>
+        <div class="writing-list">
+          <div class="writing-task"><h4>3 marks</h4><p>Explain one way investment by transnational corporations has increased development in Nigeria. Use Shell or another example.</p><textarea></textarea><button class="reveal-markscheme">Show evidence ideas</button><div class="markscheme">Use: jobs, tax revenue, infrastructure, technology transfer, multiplier effect. Stronger answers include a named example and a clear link to development.</div></div>
+          <div class="writing-task"><h4>4 marks</h4><p>Explain two ways transnational corporations can raise the level of development in a country.</p><textarea></textarea><button class="reveal-markscheme">Show evidence ideas</button><div class="markscheme">Two developed points from: jobs, tax revenue, exports, infrastructure, skills and technology transfer. You can include a counterpoint that profits may leave the country.</div></div>
+          <div class="writing-task"><h4>8 marks</h4><p>Evaluate whether the positive impacts of rapid development outweigh the negative impacts in Nigeria.</p><textarea></textarea><button class="reveal-markscheme">Show planning points</button><div class="markscheme">Social: some better schooling/services but Makoko and inequality remain. Economic: GDP growth and investment. Environmental: oil spills, deforestation and waste. Judgement should weigh economic growth against social/environmental costs.</div></div>
+          <div class="writing-task"><h4>8 marks</h4><p>Evaluate the success of top-down and bottom-up development strategies in Nigeria.</p><textarea></textarea><button class="reveal-markscheme">Show planning points</button><div class="markscheme">Top-down projects can work at larger scale but are expensive and less community-led. Bottom-up projects are more local and targeted but harder to scale up. Strong judgement compares scale, sustainability and who benefits.</div></div>
+        </div>
+      </article>
+
+      <article class="activity-card" data-activity="exit-ticket">
+        <div class="activity-heading"><div><span class="badge">Exit ticket</span><h3>Final retrieval grid</h3></div></div>
+        <p>Write one accurate fact for each area. Use this as a final confidence check.</p>
+        <div class="exit-grid">
+          <label>Location <input type="text"></label>
+          <label>Core / periphery <input type="text"></label>
+          <label>Trade <input type="text"></label>
+          <label>Inequality <input type="text"></label>
+          <label>Geopolitics <input type="text"></label>
+          <label>Technology <input type="text"></label>
+          <label>Rapid development / Shell / strategies <input type="text"></label>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>Nigeria Revision Marathon. Static HTML/CSS/JS site for GitHub Pages or InfinityFree.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
