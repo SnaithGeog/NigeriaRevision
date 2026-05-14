@@ -1,28 +1,26 @@
-# Nigeria Revision Marathon Website
+# Nigeria Revision Marathon self-marking website
 
-A static, self-marking GCSE Geography revision site built from the Nigeria Revision Marathon PowerPoint.
+This is a static site. It needs no database and no server-side code.
 
 ## Files
+- index.html
+- styles.css
+- script.js
 
-- `index.html` - the website page
-- `styles.css` - styling and responsive layout
-- `script.js` - activity data and self-marking logic
-
-## Hosting on GitHub Pages
-
+## Host on GitHub Pages
 1. Create a new GitHub repository.
-2. Upload `index.html`, `styles.css` and `script.js` into the root of the repository.
+2. Upload these three files to the root of the repository.
 3. Go to Settings > Pages.
-4. Under Build and deployment, choose Deploy from branch.
-5. Select the `main` branch and root folder.
-6. Save. GitHub will give you a public website link.
+4. Under Build and deployment, choose Deploy from a branch.
+5. Choose main and /root, then Save.
 
-## Hosting on InfinityFree
+## Host on InfinityFree
+1. Open your InfinityFree file manager or connect by FTP.
+2. Open the htdocs folder.
+3. Upload index.html, styles.css and script.js into htdocs.
+4. Visit your domain.
 
-1. Create a free hosting account and site.
-2. Open File Manager.
-3. Go into the `htdocs` folder.
-4. Upload `index.html`, `styles.css` and `script.js`.
-5. Visit your InfinityFree domain.
-
-This site does not require PHP, databases or any server setup.
+## Notes
+- Student progress is saved in the browser using localStorage, so it stays on that device/browser only.
+- Written answers use guided self-assessment checklists and revealable model answers.
+- Retrieval, gap-fill, calculation and sorting tasks self-mark automatically.

@@ -1,228 +1,29 @@
-const normalise = value => String(value || "").toLowerCase().replace(/[^a-z0-9#.%]+/g, " ").trim();
-const includesAny = (value, accepted) => accepted.some(a => normalise(value).includes(normalise(a)));
 
-const quizData = {
-  "l1-rapid": [
-    ["Which continent is Nigeria in?", ["africa"]],
-    ["Which ocean / gulf is on its coast?", ["gulf of guinea", "atlantic"]],
-    ["Give two neighbouring countries.", ["benin+niger", "benin+chad", "benin+cameroon", "niger+chad", "niger+cameroon", "chad+cameroon"], "twoCountries"],
-    ["About how many people live in Nigeria?", ["220 million", "220m", "about 220"]],
-    ["What year did Nigeria become independent?", ["1960"]],
-    ["Name Nigeria’s film industry.", ["nollywood"]],
-    ["Give one reason Nigeria is important globally.", ["oil", "opec", "largest economy", "population", "market", "regional power"]]
-  ],
-  "l2-rapid": [
-    ["What are imports?", ["goods bought", "bought in", "brought in", "from other countries"]],
-    ["What are exports?", ["goods sold", "sold to", "other countries"]],
-    ["What is a trade surplus?", ["exports more than imports", "exports worth more", "positive trade balance"]],
-    ["Which country sells the most goods to Nigeria?", ["china"]],
-    ["Which country gives the most aid to Nigeria?", ["usa", "united states", "america"]],
-    ["What is Nigeria’s HDI rank?", ["161", "161st"]],
-    ["What is Nigeria’s life expectancy?", ["55.2", "55"]]
-  ],
-  "l2-trade": [
-    ["Calculate Nigeria’s trade balance. Show working.", ["3.2", "+3.2", "surplus"], "tradeBalance"]
-  ],
-  "l3-rapid": [
-    ["Give one positive impact of rapid development in Nigeria.", ["gdp", "tech", "services", "rail", "school", "enrolment", "investment", "jobs"]],
-    ["Give one negative environmental impact of rapid development.", ["oil spill", "deforestation", "waste", "pollution"]],
-    ["What percentage of Nigeria’s petroleum does Shell produce?", ["21", "over 21"]],
-    ["What does MOSOP stand for?", ["movement for the survival of the ogoni people", "ogoni"]],
-    ["Name one top-down project.", ["dangote", "refinery", "lagos light rail", "light rail"]],
-    ["Name one bottom-up project.", ["farmcrowdy", "lifebank"]]
-  ]
-};
-
-const tableData = {
-  "l1-core": [
-    ["Main core region of Nigeria", ["south", "the south"]],
-    ["Most important core city", ["lagos"]],
-    ["Second core area", ["abuja"]],
-    ["One periphery feature", ["poor roads", "weak electricity", "fewer services", "hospitals", "schools", "weaker infrastructure"]],
-    ["Main reason the South is richer", ["oil", "port", "investment", "ports"]],
-    ["Process that moves people to the core", ["rural urban migration", "rural-urban migration", "migration"]]
-  ]
-};
-
-const sortData = {
-  "l1-sector": {
-    options:["Retail and wholesale","Oil extraction","ICT research","Banking","Fishing","Refining oil","Healthcare","Teaching","Mining","Car assembly","University research","Film editing software"],
-    categories:["Primary","Secondary","Tertiary","Quaternary"],
-    answers:{"Retail and wholesale":"Tertiary","Oil extraction":"Primary","ICT research":"Quaternary","Banking":"Tertiary","Fishing":"Primary","Refining oil":"Secondary","Healthcare":"Tertiary","Teaching":"Tertiary","Mining":"Primary","Car assembly":"Secondary","University research":"Quaternary","Film editing software":"Quaternary"}
-  },
-  "l2-geopolitics": {
-    options:["Lake Chad water disputes","Nigeria leads ECOWAS","Boko Haram insurgency","USA provides military training","Bakassi Peninsula dispute","China supplies military hardware","Maritime boundary dispute","Nigeria sends troops to Liberia and Sierra Leone"],
-    categories:["Conflict / dispute","Cooperation / alliance"],
-    answers:{"Lake Chad water disputes":"Conflict / dispute","Nigeria leads ECOWAS":"Cooperation / alliance","Boko Haram insurgency":"Conflict / dispute","USA provides military training":"Cooperation / alliance","Bakassi Peninsula dispute":"Conflict / dispute","China supplies military hardware":"Cooperation / alliance","Maritime boundary dispute":"Conflict / dispute","Nigeria sends troops to Liberia and Sierra Leone":"Cooperation / alliance"}
-  },
-  "l3-impacts": {
-    options:["Makoko informal settlement housing 100,000+ people","GDP about $440bn","Lagos tech hub attracting investment","Oil spills in the Niger Delta","Lagos–Kano railway","Over 450,000 hectares of forest lost annually","84% primary school enrolment","10,000 tonnes of waste daily"],
-    categories:["Positive","Negative"],
-    answers:{"Makoko informal settlement housing 100,000+ people":"Negative","GDP about $440bn":"Positive","Lagos tech hub attracting investment":"Positive","Oil spills in the Niger Delta":"Negative","Lagos–Kano railway":"Positive","Over 450,000 hectares of forest lost annually":"Negative","84% primary school enrolment":"Positive","10,000 tonnes of waste daily":"Negative"}
-  }
-};
-
-const gapData = {
-  "l2-tech": {
-    text: ["By 2023, mobile penetration in Nigeria had reached ", 0, ", showing there were more connections than people. About ", 1, " of the country had internet access. Mobile banking platforms such as ", 2, " help transactions. E-learning through ", 3, " reaches remote places. Social media campaigns such as ", 4, " show how technology can support civic action."],
-    options:["","119%","40%","Paga","#EndSARS","Ulesson"],
-    answers:["119%","40%","Paga","Ulesson","#EndSARS"]
-  }
-};
-
-const strategyAnswers = {
-  "Dangote Oil Refinery": {type:"Top-down", benefit:["jobs","reduces fuel imports","imports"], limitation:["pollution","displacement"]},
-  "Lagos Light Rail": {type:"Top-down", benefit:["congestion","travel"], limitation:["budget","overrun","disruption"]},
-  "Farmcrowdy": {type:"Bottom-up", benefit:["farmers","investors","rural livelihoods"], limitation:["digital divide","access"]},
-  "Lifebank": {type:"Bottom-up", benefit:["blood","oxygen","saving lives","lives"], limitation:["cost","limited reach"]}
-};
-
-const menuItems = [
-  ["lesson1","L1 Do now","Rapid recall on location, population, oil, independence and global importance."],
-  ["lesson1","L1 Short writing","Short 2- and 3-mark location and importance questions using precise facts."],
-  ["lesson1","L1 Core/periphery table","Compare Lagos, Abuja and northern periphery regions."],
-  ["lesson1","L1 Sector sort","Sort jobs and industries into economic sectors."],
-  ["lesson2","L2 Data skills","Read trade data and complete calculation and explanation tasks."],
-  ["lesson2","L2 Geopolitics sort","Classify examples as cooperation, alliance, conflict or dispute."],
-  ["lesson2","L2 Technology gap fill","Complete a fact-rich ICT and connectivity paragraph."],
-  ["lesson3","L3 Rapid development sort","Sort social, economic and environmental impacts."],
-  ["lesson3","L3 Top-down v bottom-up","Compare Dangote, Lifebank, Farmcrowdy and Lagos Light Rail."],
-  ["exam","Final exam practice","Plan and write realistic 3-, 4- and 8-mark answers."]
-];
-
-function specialCheck(value, type){
-  const v = normalise(value);
-  if(type === "twoCountries"){
-    const countries = ["benin","niger","chad","cameroon"].filter(c => v.includes(c));
-    return countries.length >= 2;
-  }
-  if(type === "tradeBalance") return v.includes("3.2") || (v.includes("55.6") && v.includes("52.4") && v.includes("surplus"));
-  return false;
-}
-
-function renderMenu(){
-  const grid = document.getElementById("menuGrid");
-  grid.innerHTML = menuItems.map(([target,title,desc]) => `<a class="menu-item" href="#${target}"><strong>${title}</strong><span>${desc}</span></a>`).join("");
-}
-function renderQuizzes(){
-  Object.entries(quizData).forEach(([id, rows]) => {
-    const el = document.querySelector(`[data-quiz="${id}"]`);
-    if(!el) return;
-    el.innerHTML = rows.map((row,i)=>`<div class="quiz-row"><div class="question">${i+1}. ${row[0]}</div><input class="input" data-answer-id="${id}" data-index="${i}" type="text" autocomplete="off"></div>`).join("");
-  });
-}
-function renderTables(){
-  Object.entries(tableData).forEach(([id, rows]) => {
-    const el = document.querySelector(`[data-table="${id}"]`);
-    el.innerHTML = rows.map((row,i)=>`<div class="table-row"><div class="question">${row[0]}</div><input class="input" data-answer-id="${id}" data-index="${i}" type="text"></div>`).join("");
-  });
-}
-function renderSorts(){
-  Object.entries(sortData).forEach(([id, data]) => {
-    const el = document.querySelector(`[data-sort="${id}"]`);
-    el.innerHTML = data.options.map((option,i)=>`<div class="sort-row"><div class="question">${option}</div><select data-answer-id="${id}" data-option="${option}"><option value="">Choose...</option>${data.categories.map(c=>`<option>${c}</option>`).join("")}</select></div>`).join("");
-  });
-}
-function renderGaps(){
-  Object.entries(gapData).forEach(([id, data]) => {
-    const el = document.querySelector(`[data-gap="${id}"]`);
-    el.innerHTML = data.text.map(part => typeof part === "number" ? `<select data-answer-id="${id}" data-index="${part}">${data.options.map(o=>`<option>${o}</option>`).join("")}</select>` : part).join("");
-  });
-}
-function renderStrategies(){
-  const el = document.querySelector(`[data-strategy="l3-strategies"]`);
-  el.innerHTML = Object.keys(strategyAnswers).map(project => `<div class="strategy-row"><strong>${project}</strong><select data-project="${project}" data-field="type"><option value="">Type...</option><option>Top-down</option><option>Bottom-up</option></select><input class="input" data-project="${project}" data-field="benefit" placeholder="One benefit"><input class="input" data-project="${project}" data-field="limitation" placeholder="One limitation"></div>`).join("");
-}
-
-function markInputs(id, rows){
-  let correct = 0;
-  rows.forEach((row,i)=>{
-    const input = document.querySelector(`[data-answer-id="${id}"][data-index="${i}"]`);
-    const ok = row[2] ? specialCheck(input.value,row[2]) : includesAny(input.value,row[1]);
-    input.classList.toggle("correct", ok); input.classList.toggle("incorrect", !ok && input.value.trim());
-    if(ok) correct++;
-  });
-  showFeedback(id, correct, rows.length);
-}
-function markSort(id){
-  const data = sortData[id]; let correct = 0;
-  data.options.forEach(option=>{
-    const select = document.querySelector(`[data-answer-id="${id}"][data-option="${CSS.escape(option)}"]`);
-    const ok = select.value === data.answers[option];
-    select.classList.toggle("correct", ok); select.classList.toggle("incorrect", !ok && select.value);
-    if(ok) correct++;
-  });
-  showFeedback(id, correct, data.options.length);
-}
-function markGap(id){
-  const data = gapData[id]; let correct = 0;
-  data.answers.forEach((answer,i)=>{
-    const select = document.querySelector(`[data-answer-id="${id}"][data-index="${i}"]`);
-    const ok = select.value === answer;
-    select.classList.toggle("correct", ok); select.classList.toggle("incorrect", !ok && select.value);
-    if(ok) correct++;
-  });
-  showFeedback(id, correct, data.answers.length);
-}
-function markStrategy(){
-  let correct = 0, total = 0;
-  Object.entries(strategyAnswers).forEach(([project, answer])=>{
-    ["type","benefit","limitation"].forEach(field=>{
-      total++;
-      const input = document.querySelector(`[data-project="${CSS.escape(project)}"][data-field="${field}"]`);
-      const ok = field === "type" ? input.value === answer.type : includesAny(input.value, answer[field]);
-      input.classList.toggle("correct", ok); input.classList.toggle("incorrect", !ok && input.value);
-      if(ok) correct++;
-    });
-  });
-  showFeedback("l3-strategies", correct, total);
-}
-function showFeedback(id, correct, total){
-  const box = document.getElementById(`feedback-${id}`); if(!box) return;
-  box.style.display = "block";
-  box.className = `feedback ${correct === total ? "good" : "bad"}`;
-  box.textContent = correct === total ? `Excellent: ${correct}/${total} correct.` : `${correct}/${total} correct. Fix the highlighted answers, then check again.`;
-  scores[id] = {correct,total}; saveScores(); updateScore();
-}
-function showAnswers(id){
-  if(quizData[id]) quizData[id].forEach((row,i)=>{const input=document.querySelector(`[data-answer-id="${id}"][data-index="${i}"]`); input.value = row[2] === "twoCountries" ? "Benin and Cameroon" : row[2] === "tradeBalance" ? "+$3.2bn trade surplus" : row[1][0];});
-  if(tableData[id]) tableData[id].forEach((row,i)=>{document.querySelector(`[data-answer-id="${id}"][data-index="${i}"]`).value = row[1][0];});
-  if(sortData[id]) sortData[id].options.forEach(option=>{document.querySelector(`[data-answer-id="${id}"][data-option="${CSS.escape(option)}"]`).value = sortData[id].answers[option];});
-  if(gapData[id]) gapData[id].answers.forEach((answer,i)=>{document.querySelector(`[data-answer-id="${id}"][data-index="${i}"]`).value = answer;});
-  if(id === "l3-strategies") Object.entries(strategyAnswers).forEach(([project, answer])=>{
-    document.querySelector(`[data-project="${CSS.escape(project)}"][data-field="type"]`).value = answer.type;
-    document.querySelector(`[data-project="${CSS.escape(project)}"][data-field="benefit"]`).value = answer.benefit[0];
-    document.querySelector(`[data-project="${CSS.escape(project)}"][data-field="limitation"]`).value = answer.limitation[0];
-  });
-}
-
-let scores = JSON.parse(localStorage.getItem("nigeriaRevisionScores") || "{}");
-function saveScores(){ localStorage.setItem("nigeriaRevisionScores", JSON.stringify(scores)); }
-function updateScore(){
-  const totals = Object.values(scores).reduce((acc,s)=>{acc.c += s.correct; acc.t += s.total; return acc;},{c:0,t:0});
-  document.getElementById("score-total").textContent = `${totals.c} / ${totals.t}`;
-}
-function wireEvents(){
-  document.querySelectorAll(".check-btn").forEach(btn=>btn.addEventListener("click",()=>{
-    const id = btn.dataset.check;
-    if(quizData[id]) markInputs(id, quizData[id]);
-    else if(tableData[id]) markInputs(id, tableData[id]);
-    else if(sortData[id]) markSort(id);
-    else if(gapData[id]) markGap(id);
-    else if(id === "l3-strategies") markStrategy();
-  }));
-  document.querySelectorAll(".show-btn").forEach(btn=>btn.addEventListener("click",()=>showAnswers(btn.dataset.show)));
-  document.querySelectorAll(".reveal-markscheme").forEach(btn=>btn.addEventListener("click",()=>{
-    const box = btn.nextElementSibling; box.classList.toggle("visible"); btn.textContent = box.classList.contains("visible") ? "Hide mark scheme" : "Show mark scheme";
-  }));
-  document.getElementById("resetBtn").addEventListener("click",()=>{
-    if(!confirm("Reset all saved scores and typed answers on this device?")) return;
-    localStorage.removeItem("nigeriaRevisionScores"); scores={}; updateScore();
-    document.querySelectorAll("input, textarea").forEach(i=>i.value="");
-    document.querySelectorAll("select").forEach(s=>s.selectedIndex=0);
-    document.querySelectorAll(".correct,.incorrect").forEach(el=>el.classList.remove("correct","incorrect"));
-    document.querySelectorAll(".feedback").forEach(el=>el.style.display="none");
-  });
-}
-
-renderMenu(); renderQuizzes(); renderTables(); renderSorts(); renderGaps(); renderStrategies(); wireEvents(); updateScore();
+const app=document.getElementById('app'); const menu=document.getElementById('menu');
+const norm=s=>(s||'').toLowerCase().replace(/[’']/g,'').replace(/[^a-z0-9%#\. ]/g,' ').replace(/\s+/g,' ').trim();
+const save=(id,val)=>localStorage.setItem('nigeria_'+id, JSON.stringify(val));
+const load=id=>{try{return JSON.parse(localStorage.getItem('nigeria_'+id)||'null')}catch(e){return null}};
+function markDone(id){save('done_'+id,true); updateProgress();}
+function updateProgress(){let done=ACTIVITIES.filter(a=>load('done_'+a.id)).length; document.querySelectorAll('.progress span').forEach(x=>x.style.width=(done/ACTIVITIES.length*100)+'%'); document.querySelectorAll('.progText').forEach(x=>x.textContent=`${done}/${ACTIVITIES.length} activities completed`)}
+function makeMenu(){ACTIVITIES.forEach(a=>{let link=document.createElement('a');link.href='#'+a.id;link.innerHTML=`${a.lesson}: ${a.title}<small>${a.description}</small>`;menu.appendChild(link)})}
+function sectionShell(a,inner){return `<section class="activity" id="${a.id}"><a class="toplink" href="#menu">Main menu ↑</a><span class="meta">${a.lesson}</span><h2>${a.title}</h2><p class="desc">${a.description}</p>${inner}<div class="progress"><span></span></div><p class="progText"></p></section>`}
+function renderShort(a){let qs=a.questions.map((q,i)=>`<div class="qcard"><label>${i+1}. ${q[0]}</label><input id="${a.id}_q${i}" autocomplete="off"><div id="${a.id}_f${i}" class="feedback"></div></div>`).join('');let ans='<ol>'+a.answers.map(x=>`<li>${x}</li>`).join('')+'</ol>';let challenge=a.challenge?`<div class="qcard"><label>Challenge</label><textarea placeholder="${a.challenge}"></textarea></div>`:'';return sectionShell(a,`<div class="grid two">${qs}</div>${challenge}<div class="btnrow"><button class="btn" onclick="checkShort('${a.id}')">Check answers</button><button class="btn secondary" onclick="toggleAnswers('${a.id}')">Show full answers</button></div><div class="answers" id="${a.id}_answers"><h3>Answers</h3>${ans}</div>`)}
+function checkShort(id){let a=ACTIVITIES.find(x=>x.id==id), total=0; a.questions.forEach((q,i)=>{let val=norm(document.getElementById(`${id}_q${i}`).value);let needed=q[2]||1;let hits=q[1].filter(k=>val.includes(norm(k))).length;let ok=hits>=needed; total+=ok; let f=document.getElementById(`${id}_f${i}`); f.className='feedback '+(ok?'correct':'wrong'); f.textContent=ok?'Correct':'Check this one, then compare with the answer list.';}); if(total===a.questions.length) markDone(id)}
+function renderWriting(a){let cards=a.prompts.map((p,i)=>`<div class="qcard"><p><span class="pill">${p.marks} marks</span></p><label>${p.q}</label><textarea id="${a.id}_w${i}" placeholder="Write your answer here..."></textarea><div class="checklist">${p.checks.map((c,j)=>`<label><input type="checkbox" class="${a.id}_chk${i}"> ${c}</label>`).join('')}</div><div class="scorebox" id="${a.id}_score${i}">Self-assess using the checklist, then reveal the model.</div><button class="btn teal" onclick="scoreWriting('${a.id}',${i})">Update self-mark</button><button class="btn secondary" onclick="toggleOne('${a.id}_model${i}')">Reveal model answer / planning points</button><div class="answers" id="${a.id}_model${i}"><h3>Model answer / planning points</h3><p>${p.model}</p></div></div>`).join('');return sectionShell(a,`<div class="grid">${cards}</div><div class="btnrow"><button class="btn" onclick="markDone('${a.id}')">Mark activity as complete</button></div>`)}
+function scoreWriting(id,i){let checks=[...document.querySelectorAll(`.${id}_chk${i}`)];let hit=checks.filter(c=>c.checked).length;let marks=ACTIVITIES.find(a=>a.id==id).prompts[i].marks;let est=Math.min(marks, Math.round(hit/checks.length*marks));document.getElementById(`${id}_score${i}`).textContent=`Estimated self-mark: ${est}/${marks}. Add missing checklist points before moving on.`}
+function renderTable(a){let isMulti=!!a.columns;let body;if(isMulti){body=`<table class="table"><thead><tr>${a.columns.map(c=>`<th>${c}</th>`).join('')}</tr></thead><tbody>${a.rows.map((r,i)=>`<tr><td>${r[0]}</td>${r.slice(1).map((_,j)=>`<td><input class="table-input" id="${a.id}_${i}_${j}"></td>`).join('')}</tr>`).join('')}</tbody></table>`}else{body=`<table class="table"><thead><tr><th>Prompt</th><th>Your answer</th></tr></thead><tbody>${a.rows.map((r,i)=>`<tr><td><strong>${r[0]}</strong></td><td><input class="table-input" id="${a.id}_${i}"></td></tr>`).join('')}</tbody></table>`}let ans=`<table class="table"><tbody>${a.rows.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</tbody></table>`;return sectionShell(a,`${body}${a.stretch?`<div class="qcard"><label>Stretch</label><textarea placeholder="${a.stretch}"></textarea></div>`:''}<div class="btnrow"><button class="btn" onclick="checkTable('${a.id}')">Check table</button><button class="btn secondary" onclick="toggleAnswers('${a.id}')">Show answer table</button></div><div class="answers" id="${a.id}_answers"><h3>Answer table</h3>${ans}</div>`)}
+function checkTable(id){let a=ACTIVITIES.find(x=>x.id==id), cells=0, hits=0;if(a.columns){a.rows.forEach((r,i)=>r.slice(1).forEach((ans,j)=>{cells++; let val=norm(document.getElementById(`${id}_${i}_${j}`).value); if(ans.split(/,|\/|;| and /).some(part=>val.includes(norm(part).split(' ')[0]) && norm(part).split(' ')[0].length>2) || val.includes(norm(ans))) hits++;}))}else{a.rows.forEach((r,i)=>{cells++; let val=norm(document.getElementById(`${id}_${i}`).value); let ans=norm(r[1]); if(ans.split(' ').some(w=>w.length>4 && val.includes(w)) || val.includes(ans)) hits++;})} alert(`You matched about ${hits}/${cells}. Use the answer table to improve any missing detail.`); if(hits>=Math.ceil(cells*.7)) markDone(id)}
+function renderSort(a){let items=Object.keys(a.items).sort(()=>Math.random()-.5).map(it=>`<span draggable="true" class="chip" data-item="${it}">${it}</span>`).join('');let zones=a.categories.map(c=>`<div class="dropzone" data-cat="${c}"><h3>${c}</h3></div>`).join('');let extra=a.prompts?renderPromptMini(a):'';return sectionShell(a,`<div class="sort-wrap"><div class="item-bank"><h3>Mixed options</h3><div class="bank">${items}</div></div><div class="dropzones">${zones}</div></div>${a.challenge?`<div class="qcard"><label>Challenge</label><textarea placeholder="${a.challenge}"></textarea></div>`:''}<div class="btnrow"><button class="btn" onclick="checkSort('${a.id}')">Check sort</button><button class="btn secondary" onclick="resetSort('${a.id}')">Reset sort</button></div><div id="${a.id}_sortfeedback" class="feedback"></div>${extra}`)}
+function renderPromptMini(a){return `<div class="grid">${a.prompts.map((p,i)=>`<div class="qcard"><p><span class="pill">${p.marks} marks</span></p><label>${p.q}</label><textarea></textarea><button class="btn secondary" onclick="toggleOne('${a.id}_model${i}')">Reveal model</button><div class="answers" id="${a.id}_model${i}"><p>${p.model}</p><ul>${p.checks.map(c=>`<li>${c}</li>`).join('')}</ul></div></div>`).join('')}</div>`}
+function setupDrag(){document.addEventListener('dragstart',e=>{if(e.target.classList.contains('chip'))e.dataTransfer.setData('text/plain',e.target.dataset.item)});document.addEventListener('dragover',e=>{if(e.target.closest('.dropzone')||e.target.closest('.bank'))e.preventDefault();});document.addEventListener('drop',e=>{let z=e.target.closest('.dropzone')||e.target.closest('.bank');if(!z)return; e.preventDefault();let item=e.dataTransfer.getData('text/plain');let chip=document.querySelector(`.chip[data-item="${CSS.escape(item)}"]`); if(chip)z.appendChild(chip);});}
+function checkSort(id){let a=ACTIVITIES.find(x=>x.id==id), total=0, correct=0;document.querySelectorAll(`#${id} .dropzone`).forEach(z=>{let cat=z.dataset.cat;[...z.querySelectorAll('.chip')].forEach(ch=>{total++; if(a.items[ch.dataset.item]===cat) correct++;})});let f=document.getElementById(`${id}_sortfeedback`);f.className='feedback '+(correct===Object.keys(a.items).length?'correct':'wrong');f.textContent=`${correct}/${Object.keys(a.items).length} correct. ${correct===Object.keys(a.items).length?'Excellent.':'Move any that need improving and check again.'}`;if(correct===Object.keys(a.items).length)markDone(id)}
+function resetSort(id){let bank=document.querySelector(`#${id} .bank`);document.querySelectorAll(`#${id} .chip`).forEach(c=>bank.appendChild(c));}
+function renderGap(a){let para=a.paragraph.replace(/\[gap(\d+)\]/g,(m,n)=>`<select class="gap-select" id="${a.id}_gap${n}"><option value="">Choose...</option>${a.options.map(o=>`<option>${o}</option>`).join('')}</select>`);return sectionShell(a,`<div class="paragraph">${para}</div><div class="btnrow"><button class="btn" onclick="checkGap('${a.id}')">Check gap fill</button><button class="btn secondary" onclick="toggleAnswers('${a.id}')">Show completed answer</button></div><div id="${a.id}_gapfeedback" class="feedback"></div><div class="answers" id="${a.id}_answers"><h3>Completed answer</h3><p>${a.paragraph.replace(/\[gap(\d+)\]/g,(m,n)=>`<strong>${a.answers[n]}</strong>`)}</p><p><strong>Why it matters:</strong> ${a.why}</p></div>`)}
+function checkGap(id){let a=ACTIVITIES.find(x=>x.id==id), c=0;a.answers.forEach((ans,i)=>{let el=document.getElementById(`${id}_gap${i}`);let ok=el.value===ans;el.style.borderColor=ok?'var(--ok)':'var(--bad)'; if(ok)c++;});let f=document.getElementById(`${id}_gapfeedback`);f.className='feedback '+(c===a.answers.length?'correct':'wrong');f.textContent=`${c}/${a.answers.length} correct.`;if(c===a.answers.length)markDone(id)}
+function renderDataWriting(a){let data=`<div class="data-box"><table class="table"><tbody>${a.data.map(r=>`<tr><td>${r[0]}</td><td><strong>${r[1]}</strong></td></tr>`).join('')}</tbody></table></div>`;let calc=`<div class="qcard"><label>${a.calc.q}</label><input id="${a.id}_calc" placeholder="e.g. 55.6 - 52.4 = +3.2"><div id="${a.id}_calcf" class="feedback"></div></div>`;return sectionShell(a,`${data}${calc}<div class="btnrow"><button class="btn" onclick="checkCalc('${a.id}')">Check calculation</button></div>${renderWriting(a).match(/<div class="grid">[\s\S]*?<\/div><div class="btnrow">/)[0].replace('<div class="btnrow">','')}<div class="answers" id="${a.id}_answers"><p><strong>Calculation:</strong> $55.6bn – $52.4bn = +$3.2bn, so Nigeria has a trade surplus.</p></div>`)}
+function checkCalc(id){let val=norm(document.getElementById(`${id}_calc`).value);let ok=val.includes('3.2')||val.includes('+3.2');let f=document.getElementById(`${id}_calcf`);f.className='feedback '+(ok?'correct':'wrong');f.textContent=ok?'Correct: +$3.2bn trade surplus.':'Check: exports minus imports = 55.6 - 52.4.'; if(ok) markDone(id)}
+function renderExit(a){let rows=a.areas.map((area,i)=>`<tr><td><strong>${area}</strong></td><td><input class="table-input" id="${a.id}_${i}"></td></tr>`).join('');let suggestions='<ul>'+a.suggestions.map(s=>`<li>${s}</li>`).join('')+'</ul>';return sectionShell(a,`<table class="table"><thead><tr><th>Area</th><th>One accurate fact</th></tr></thead><tbody>${rows}</tbody></table><div class="btnrow"><button class="btn" onclick="markDone('${a.id}')">Mark complete</button><button class="btn secondary" onclick="toggleAnswers('${a.id}')">Show suggested facts</button></div><div class="answers" id="${a.id}_answers">${suggestions}</div>`)}
+function toggleAnswers(id){document.getElementById(id+'_answers').classList.toggle('show')}
+function toggleOne(id){document.getElementById(id).classList.toggle('show')}
+function render(){makeMenu();let lessons=['Lesson 1','Lesson 2','Lesson 3','Final'];lessons.forEach(l=>{let acts=ACTIVITIES.filter(a=>a.lesson===l);if(!acts.length)return;app.insertAdjacentHTML('beforeend',`<section class="lesson-intro"><h2>${l}</h2><p class="desc">${l==='Lesson 1'?'Location, importance, core/periphery and economic structure':l==='Lesson 2'?'Trade, aid, inequality, geopolitics and technology':l==='Lesson 3'?'Rapid development, Shell and development strategies':'Exam practice and final retrieval'}</p></section>`);acts.forEach(a=>{let html=''; if(a.type==='short')html=renderShort(a); if(a.type==='writing')html=renderWriting(a); if(a.type==='table')html=renderTable(a); if(a.type==='sort')html=renderSort(a); if(a.type==='sortwrite')html=renderSort(a); if(a.type==='gapfill')html=renderGap(a); if(a.type==='datawriting')html=renderDataWriting(a); if(a.type==='exit')html=renderExit(a); app.insertAdjacentHTML('beforeend',html);});});setupDrag();updateProgress();}
+document.getElementById('resetAll').addEventListener('click',()=>{if(confirm('Reset all saved progress on this device?')){Object.keys(localStorage).filter(k=>k.startsWith('nigeria_')).forEach(k=>localStorage.removeItem(k));location.reload();}});render();
